@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>統計学をやってみた -分散と標準偏差-</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="Keywords" content="統計学" />
+	<style>
+		body {margin:0 auto;width:55%;}
+	</style>
+	<script type="text/javascript" src="../scripts/shCore.js"></script>
+	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
+	<script type="text/javascript" src="../scripts/shBrushCSharp.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="../styles/shThemeDefault.css"/>
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = '../scripts/clipboard.swf';
+		SyntaxHighlighter.all();
+	</script>
+</head>
+<body>
+<div style="text-align:center;"><h1>統計学をやってみた</h1></div>
+<h2>分散と標準偏差</h2>
+	<pre class="brush: cpp;">
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main(void)
+{
+	int array[] = {51, 49, 50, 57, 43};
+	int element_num = sizeof(array) / sizeof(array[0]);
+	int sum = 0;
+
+	for(int i=0;i&lt;element_num;i++)
+	{
+		sum += array[i];
+	}
+
+	int average = sum / element_num;
+	sum = 0;
+
+	for(int i=0;i&lt;element_num;i++)
+	{
+		int tmp = (array[i] - average);
+		sum += tmp * tmp;
+	}
+
+	int dispersion = sum / element_num;
+	float standard_diviation = sqrt(dispersion);
+
+	cout << dispersion << endl;
+	cout << standard_diviation << endl;
+
+	return 0;
+}
+	</pre>
+	出典：「史上最強図解　これならわかる！統計学」<br />
+	著者：涌井良幸、涌井貞美<br />
+	株式会社ナツメ社<br />
+</body>
+</html>

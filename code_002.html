@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>統計学をやってみた -標準化-</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="Keywords" content="統計学" />
+	<style>
+		body {margin:0 auto;width:55%;}
+	</style>
+	<script type="text/javascript" src="../scripts/shCore.js"></script>
+	<script type="text/javascript" src="../scripts/shBrushCpp.js"></script>
+	<script type="text/javascript" src="../scripts/shBrushCSharp.js"></script>
+	<link type="text/css" rel="stylesheet" href="../styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="../styles/shThemeDefault.css"/>
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = '../scripts/clipboard.swf';
+		SyntaxHighlighter.all();
+	</script>
+</head>
+<body>
+<div style="text-align:center;"><h1>統計学をやってみた</h1></div>
+<h2>標準化</h2>
+	<pre class="brush: cpp;">
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main(void)
+{                                                                                
+		float array[] = {184.2, 177.7, 176.4, 176.0, 168.0, 165.3, 170.0, 164.6, 159.1, 174.4};
+        int element_num = sizeof(array) / sizeof(array[0]);
+        int sum = 0;
+        int average = 0;
+        int dispersion = 0;
+        float standard_deviation = 0.0F;
+
+        for(int i=0;i<element_num;i++)
+        {
+                sum += array[i];
+        }
+
+        average = sum / element_num;
+		sum = 0;
+
+		for(int i=0;i<element_num;i++)
+		{
+			int tmp = (array[i] - average);
+			sum += tmp * tmp;
+		}
+	
+		dispersion = sum / element_num;
+
+		standard_deviation = sqrt(dispersion);
+
+		for(int i=0;i<element_num;i++)
+		{
+			float tmp = (array[i] - average) / standard_deviation;
+			cout << tmp << endl;
+		}
+
+	return 0;
+}
+	</pre>
+	出典：「史上最強図解　これならわかる！統計学」<br />
+	著者：涌井良幸、涌井貞美<br />
+	株式会社ナツメ社<br />
+</body>
+</html>
